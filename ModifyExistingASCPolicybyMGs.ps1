@@ -10,6 +10,12 @@
 
 #$mgascassignmentname = "ASC Default"
 
+#comment the below line out if using cloud shell
+#$outfilepath = "C:\users\subs.txt"
+
+#comment out the below line if using local powershell (will detect in later release)
+$outfilepath = "~/clouddrive/asc_pol_removed.txt"
+
 $subascassignmentname = "ASC Default"
 
 # gets all management groups from authorized login 
@@ -50,6 +56,7 @@ foreach ($azuremgmt in $azuremgmts){
     
                     ## Remove the following policy assignemnt from subscription.
                     Remove-AzPolicyAssignment -Id $policyassignsub.ResourceId[0]
+                    $policyassignsub.Name | out-file $outfilepath -append
 
                 }
 
