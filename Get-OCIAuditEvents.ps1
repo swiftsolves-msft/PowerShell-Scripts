@@ -8,7 +8,7 @@ $workspaceID = "LA WORKSPACEID"
 $CustomerId = "LA WORKSPACEID"
 $workspaceKey = "LA WORKSPACEKEY"
 $SharedKey = "LA WORKSPACEKEY"
-$LogType = "OCIAudit_CL"
+$LogType = "IDCSAudit_CL"
 $timeStampField = "timestamp"
 
 # Form the Header and Body Request to obtain OCI Access Token
@@ -23,7 +23,7 @@ $sigBody = "grant_type=client_credentials&scope=urn:opc:idm:__myscopes__"
 $sig = (Invoke-RestMethod -Uri $siguri -Method POST -Headers $sigHeaders -Body $sigBody -Verbose).access_token
 
 # Invoke and search for OCIAudit_CL latest table entry if found pass datetime value, if not pass a time generated from 5 days ago.
-$starttime = (Invoke-AzOperationalInsightsQuery -WorkspaceId $workspaceID -Query "union isfuzzy=true (OCIAudit_CL |  summarize arg_max(TimeGenerated , TimeGenerated ) |project TimeGenerated ) | summarize arg_max(TimeGenerated , TimeGenerated ) | project TimeGenerated" -ErrorAction SilentlyContinue).Results.TimeGenerated
+$starttime = (Invoke-AzOperationalInsightsQuery -WorkspaceId $workspaceID -Query "union isfuzzy=true (IDCSAudit_CL |  summarize arg_max(TimeGenerated , TimeGenerated ) |project TimeGenerated ) | summarize arg_max(TimeGenerated , TimeGenerated ) | project TimeGenerated" -ErrorAction SilentlyContinue).Results.TimeGenerated
 
 # Conditional check if OCIAudit_CL table does not exist need to prime and pump, set starttime a day ago
 If (!$starttime) {
