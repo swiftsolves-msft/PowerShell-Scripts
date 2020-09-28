@@ -28,3 +28,5 @@ New-NetFirewallRule -Name Allow_Ping -DisplayName “Allow Ping”`
   -Protocol ICMPv4 -IcmpType 8 -Enabled True -Profile Any -Action Allow `
 
   -Debug
+  
+ Stop-Transcript
