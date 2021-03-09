@@ -51,12 +51,6 @@ foreach ($file in $files){
     $reportObj | Add-Member -NotePropertyName Description -NotePropertyValue $rule.description
     $reportObj | Add-Member -NotePropertyName Link -NotePropertyValue $linkpath
 
-    # obtain last modified date on detection
-    $webRequest = [System.Net.HttpWebRequest]::Create($linkpath)
-    $webResponse = $webRequest.GetResponse()
-    $datetimestamp = ($webResponse.LastModified).ToShortDateString()
-    $reportObj | Add-Member -NotePropertyName LastModified -NotePropertyValue $datetimestamp
-
     # write out unique detection and collected properties into .csv report
     $reportObj | Export-Csv C:\temp\$filename -NoTypeInformation -Delimiter "," -append
 
