@@ -20,5 +20,5 @@ $url2 = "https://management.azure.com/{RESOURCEID}/extensions/MDE.Windows?api-ve
 $payload2 = "{'name': 'MDE.Windows', 'id': '{RESOURCEID}/extensions/MDE.Windows', 'type': 'Microsoft.compute/virtualMachines/extensions', 'location': '{VMLOCATION}', 'properties': {'autoUpgradeMinorVersion': true, 'publisher': 'Microsoft.Azure.AzureDefenderForServers','type': 'MDE.Windows','typeHandlerVersion': '1.0','settings': {'azureResourceId': '{RESOURCEID}','vNextEnabled': 'true'},'protectedSettings': {'defenderForEndpointOnboardingScript': '{BASE64PACKAGE}'}}}"
 
 
-# PUT Api to setup continuous export rule to send to Event Hubs
+# PUT Api to MDE onboard a VM
 armclient PUT $url2 $payload2
