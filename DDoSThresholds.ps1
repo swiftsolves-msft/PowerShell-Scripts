@@ -8,9 +8,6 @@ $outputFile = $path
 $string = "PublicIpName,SYN-PPSThreshold,TCP-PPSThreshold,UDP-PPSThreshold,AzureSubscription,AttachedType,ResourceAttachedName,PublicIpResourceId"
 $string | Out-File $outputFile -append -force
 
-# NOTE could write an additional outer loop to get all public ips in all subs | $Subs = Get-AzSubscription
-
-
 # get all Azure subscriptions to check
 $Subs = Get-AzSubscription
 
